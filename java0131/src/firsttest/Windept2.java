@@ -262,16 +262,24 @@ public class Windept2 extends JFrame {
 
 	public void update() {
 
-		String sql = String.format(
-				"update emp set ename='"+tf2.getText()+"',job='"+tf3.getText()+"',mgr='"+tf4.getText()
-				+"',hiredate='"+tf5.getText()+"',sal='"+tf6.getText()+"',comm='"+tf7.getText()+
-				"',deptno='"+tf8.getText()+"' where empno ="+tf1.getText()+" ");
+		
 		
 		
 		try {
+			String sql = String.format(
+					"update emp set ename='"+tf2.getText()+"',job='"+tf3.getText()+"',mgr='"+tf4.getText()
+					+"',hiredate='"+tf5.getText()+"',sal='"+tf6.getText()+"',comm='"+tf7.getText()+
+					"',deptno='"+tf8.getText()+"' where empno ="+tf1.getText()+" ");
 			
+			Statement stmt = conn.createStatement();
 			int res = stmt.executeUpdate(sql);
 			
+			if(res >= 1 ) {
+				ta.setText("");
+				ta.append("수정 되었습니다.");
+			}else {
+				ta.append("수정할 수 없습니다."+ res);
+			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -284,11 +292,20 @@ public class Windept2 extends JFrame {
 
 	public void delete() {
 
-		String sql = String.format( "delete from emp where empno = " +  tf1.getText());
+		
 		
 		try {
+			String sql = String.format( "delete from emp where empno = " +  tf1.getText());
 			
+			Statement stmt = conn.createStatement();
 			int res = stmt.executeUpdate(sql);
+			
+			if(res >= 1 ) {
+				ta.setText("");
+				ta.append("삭제 되었습니다.");
+			}else {
+				ta.append("수정할 수 없습니다."+ res);
+			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
