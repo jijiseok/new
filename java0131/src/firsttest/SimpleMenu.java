@@ -1,6 +1,5 @@
 package firsttest;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -10,10 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
-
 public class SimpleMenu {
-	
+
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/firm";
 	private static final String DB_USER = "root";
 	private static final String DB_PASSWORD = "mysql";
@@ -193,6 +190,7 @@ public class SimpleMenu {
 		}
 
 	}
+
 	private static void delete(Connection connection) {
 
 		// 행삭제하기
@@ -207,17 +205,16 @@ public class SimpleMenu {
 			ResultSet rs2 = stmt.executeQuery(sq2);
 
 			if (rs2.next()) {
-				while (rs2.next()) {
-					System.out.println("삭제할 사원의 정보를 확인해주세요");
-					System.out.print(rs2.getInt("empno") + ",\t");
-					System.out.print(rs2.getString("ename") + ",\t");
-					System.out.print(rs2.getString("job") + ",\t");
-					System.out.print(rs2.getInt("mgr") + ",\t");
-					System.out.print(rs2.getString("hiredate") + ",\t");
-					System.out.print(rs2.getDouble("sal") + ",\t");
-					System.out.print(rs2.getDouble("comm") + ",\t");
-					System.out.println(rs2.getInt("deptno") + ",\t");
-				}
+
+				System.out.println("삭제할 사원의 정보를 확인해주세요");
+				System.out.print(rs2.getInt("empno") + ",\t");
+				System.out.print(rs2.getString("ename") + ",\t");
+				System.out.print(rs2.getString("job") + ",\t");
+				System.out.print(rs2.getInt("mgr") + ",\t");
+				System.out.print(rs2.getString("hiredate") + ",\t");
+				System.out.print(rs2.getDouble("sal") + ",\t");
+				System.out.print(rs2.getDouble("comm") + ",\t");
+				System.out.println(rs2.getInt("deptno") + ",\t");
 
 				System.out.println("----------------------");
 				System.out.println("1. 삭제 | 2.메뉴로 돌아가기");
@@ -239,7 +236,6 @@ public class SimpleMenu {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 
 	}
 }

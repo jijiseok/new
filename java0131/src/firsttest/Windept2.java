@@ -304,7 +304,7 @@ public class Windept2 extends JFrame {
 				ta.setText("");
 				ta.append("삭제 되었습니다.");
 			}else {
-				ta.append("수정할 수 없습니다."+ res);
+				ta.append("삭제할수없습니다."+ res);
 			}
 			
 		} catch (SQLException e) {
