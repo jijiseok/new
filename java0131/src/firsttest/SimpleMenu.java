@@ -67,7 +67,7 @@ public class SimpleMenu {
 			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
-
+			
 			while (rs.next()) {
 				int empno = rs.getInt("empno");
 				String ename = rs.getString("ename");
@@ -116,6 +116,7 @@ public class SimpleMenu {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 			stmt = conn.createStatement();
+			
 			String sql = "insert into Emp(empno, ename, job, mgr, hiredate, sal, comm, deptno) values  ('" + empno
 					+ "', '" + ename + "', '" + job + "', '" + mgr + "', '" + hiredate + "', '" + sal + "', '" + comm
 					+ "', '" + deptno + "')";
@@ -127,7 +128,7 @@ public class SimpleMenu {
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
-		}
+		} 
 
 	}
 
@@ -207,13 +208,13 @@ public class SimpleMenu {
 			if (rs2.next()) {
 				System.out.println("삭제할 사원의 정보를 확인해주세요");
 				System.out.print(rs2.getInt("empno") + ",\t");
-				System.out.print(rs2.getString("ename") + ",\t");
-				System.out.print(rs2.getString("job") + ",\t");
-				System.out.print(rs2.getInt("mgr") + ",\t");
-				System.out.print(rs2.getString("hiredate") + ",\t");
-				System.out.print(rs2.getDouble("sal") + ",\t");
-				System.out.print(rs2.getDouble("comm") + ",\t");
-				System.out.println(rs2.getInt("deptno") + ",\t");
+				System.out.print(rs2.getString("ename")+ ",\t");
+				System.out.print(rs2.getString("job")+ ",\t");
+				System.out.print(rs2.getInt("mgr")+ ",\t");
+				System.out.print(rs2.getString("hiredate")+ ",\t");
+				System.out.print(rs2.getDouble("sal")+ ",\t");
+				System.out.print(rs2.getDouble("comm")+ ",\t");
+				System.out.println(rs2.getInt("deptno"));
 
 			} else {
 				System.out.println("사원번호를 다시 확인해주세요");
