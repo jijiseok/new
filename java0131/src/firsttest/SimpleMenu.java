@@ -205,7 +205,6 @@ public class SimpleMenu {
 			ResultSet rs2 = stmt.executeQuery(sq2);
 
 			if (rs2.next()) {
-
 				System.out.println("삭제할 사원의 정보를 확인해주세요");
 				System.out.print(rs2.getInt("empno") + ",\t");
 				System.out.print(rs2.getString("ename") + ",\t");
@@ -216,22 +215,22 @@ public class SimpleMenu {
 				System.out.print(rs2.getDouble("comm") + ",\t");
 				System.out.println(rs2.getInt("deptno") + ",\t");
 
-				System.out.println("----------------------");
-				System.out.println("1. 삭제 | 2.메뉴로 돌아가기");
-				System.out.println("----------------------");
-				String num = scan.nextLine();
-				if (num.equals("1")) {
-					String sql = "delete from emp where empno = " + empno;
-					int result = stmt.executeUpdate(sql);
-					if (result >= 1) {
-						System.out.println("삭제성공" + result);
-					} else {
-						System.out.println("삭제실패" + result);
-					}
-				}
 			} else {
 				System.out.println("사원번호를 다시 확인해주세요");
 			}
+
+			System.out.println("----------------------");
+			System.out.println("1. 삭제 | 2.메뉴로 돌아가기");
+			System.out.println("----------------------");
+			String num = scan.nextLine();
+			if (num.equals("1")) {
+				String sql = "delete from emp where empno = " + empno;
+				int result = stmt.executeUpdate(sql);
+				if (result >= 1) {
+					System.out.println("삭제성공" + result);
+				}
+			}
+			
 		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
