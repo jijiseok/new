@@ -12,7 +12,7 @@
     </style>    
 </head>
 <body>
-
+<a href="index.jsp">뒤로가기</a>
 <table>
     <tr>
         <th>번호</th><th>이름</th>
@@ -23,8 +23,9 @@
 	String driver="oracle.jdbc.driver.OracleDriver";
 	String url= "jdbc:oracle:thin:@localhost:1521:xe";
 	String sql="select * from score";
-	
+	Class.forName(driver);
     try ( 
+    		
         Connection conn = DriverManager.getConnection(url,"scott","tiger");
     	PreparedStatement pstmt = conn.prepareStatement(sql);
     	ResultSet rs = pstmt.executeQuery("select * from score");
@@ -34,7 +35,6 @@
             int sum = rs.getInt("kor") + rs.getInt("eng") + 
                       rs.getInt("math");
 %>          
-
             <tr>
                 <td><a href="updateForm.jsp?num=<%=rs.getString("num")%>"><%=rs.getString("num")%></a></td>
                 <td><%=rs.getString("name" )%></td>
@@ -51,7 +51,7 @@
     } catch(Exception e) {
         e.printStackTrace();
     }
-   response.sendRedirect("list.jsp");
+   
 %>
 </table>
 

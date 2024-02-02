@@ -12,3 +12,4 @@
 <button onclick="location.href='insertForm.jsp'">사원 입력</button>
 </body>
 </html>
+
