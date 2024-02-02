@@ -18,8 +18,7 @@ String driver="oracle.jdbc.driver.OracleDriver";
 String url= "jdbc:oracle:thin:@localhost:1521:xe";
 Class.forName(driver);
 Connection conn = DriverManager.getConnection(url,"scott","tiger");
-String sql="update emp1 set job = ? sal= ? where ename = ? ";
-
+String sql = "update emp1 set job = ?, sal = ? where ename = ?";
 
 PreparedStatement pstmt = conn.prepareStatement(sql);
 pstmt.setString(1,request.getParameter("job"));

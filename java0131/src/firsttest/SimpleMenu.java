@@ -55,7 +55,7 @@ public class SimpleMenu {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("유효한 정보가 아닙니다.");
 		}
 	}
 
@@ -67,7 +67,7 @@ public class SimpleMenu {
 			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
-			
+
 			while (rs.next()) {
 				int empno = rs.getInt("empno");
 				String ename = rs.getString("ename");
@@ -83,14 +83,13 @@ public class SimpleMenu {
 
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("유효한 정보가 아닙니다.");
 		}
 
 		for (Emp emp : list) {
 			System.out.println(emp.getEmpno() + "\t" + emp.getEname() + "\t" + emp.getJob() + "\t" + emp.getMgr() + "\t"
 					+ emp.getHiredate() + "\t" + emp.getSal() + "\t" + emp.getComm() + "\t" + emp.getDeptno());
 		}
-
 	}
 
 	private static void insertData(Connection connection) {
@@ -116,7 +115,7 @@ public class SimpleMenu {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 			stmt = conn.createStatement();
-			
+
 			String sql = "insert into Emp(empno, ename, job, mgr, hiredate, sal, comm, deptno) values  ('" + empno
 					+ "', '" + ename + "', '" + job + "', '" + mgr + "', '" + hiredate + "', '" + sal + "', '" + comm
 					+ "', '" + deptno + "')";
@@ -127,8 +126,8 @@ public class SimpleMenu {
 				System.out.println("입력실패");
 			}
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		} 
+			System.out.println("유효한 정보가 아닙니다.");
+		}
 
 	}
 
@@ -179,15 +178,13 @@ public class SimpleMenu {
 				int result = stmt.executeUpdate(sql);
 				if (result == 1) {
 					System.out.println("입력성공");
-				} else {
-					System.out.println("입력실패");
 				}
 			} else {
 				System.out.println("사원번호를 다시 확인해주세요");
 			}
 
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+			System.out.println("유효한 정보가 아닙니다.");
 		}
 
 	}
@@ -208,33 +205,33 @@ public class SimpleMenu {
 			if (rs2.next()) {
 				System.out.println("삭제할 사원의 정보를 확인해주세요");
 				System.out.print(rs2.getInt("empno") + ",\t");
-				System.out.print(rs2.getString("ename")+ ",\t");
-				System.out.print(rs2.getString("job")+ ",\t");
-				System.out.print(rs2.getInt("mgr")+ ",\t");
-				System.out.print(rs2.getString("hiredate")+ ",\t");
-				System.out.print(rs2.getDouble("sal")+ ",\t");
-				System.out.print(rs2.getDouble("comm")+ ",\t");
+				System.out.print(rs2.getString("ename") + ",\t");
+				System.out.print(rs2.getString("job") + ",\t");
+				System.out.print(rs2.getInt("mgr") + ",\t");
+				System.out.print(rs2.getString("hiredate") + ",\t");
+				System.out.print(rs2.getDouble("sal") + ",\t");
+				System.out.print(rs2.getDouble("comm") + ",\t");
 				System.out.println(rs2.getInt("deptno"));
 
-			} else {
+				System.out.println("----------------------");
+				System.out.println("1. 삭제 | 2.메뉴로 돌아가기");
+				System.out.println("----------------------");
+				String num = scan.nextLine();
+				if (num.equals("1")) {
+					String sql = "delete from emp where empno = " + empno;
+					int result = stmt.executeUpdate(sql);
+					if (result >= 1) {
+						System.out.println("삭제성공" + result);
+					}
+				}
+				
+
+			}else {
 				System.out.println("사원번호를 다시 확인해주세요");
 			}
 
-			System.out.println("----------------------");
-			System.out.println("1. 삭제 | 2.메뉴로 돌아가기");
-			System.out.println("----------------------");
-			String num = scan.nextLine();
-			if (num.equals("1")) {
-				String sql = "delete from emp where empno = " + empno;
-				int result = stmt.executeUpdate(sql);
-				if (result >= 1) {
-					System.out.println("삭제성공" + result);
-				}
-			}
-			
 		} catch (SQLException | ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("유효한 정보가 아닙니다.");
 		}
 
 	}

@@ -1,14 +1,14 @@
 package firsttest;
 
 class Emp {
-	int empno;
-	String ename;
-	String job;
-	int mgr;
-	String hiredate;
-	double sal;
-	double comm;
-	int deptno;
+	private int empno;
+	private String ename;
+	private String job;
+	private int mgr;
+	private String hiredate;
+	private double sal;
+	private double comm;
+	private int deptno;
 
 	public Emp(int empno, String ename, String job, int mgr, String hiredate, double sal, double comm, int deptno) {
 		super();
