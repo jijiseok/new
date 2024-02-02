@@ -27,8 +27,10 @@ if(result==1){
 	out.println("입력성공!");
 }
 %>
-<a href="select.jsp">목록으로</a>
-<br/>
+<a href="select.jsp">목록으로</a><br/>
+<%
+response.sendRedirect("select.jsp");
+%>
 
 </body>
 </html>

@@ -23,6 +23,9 @@ pstmt.setString(1, request.getParameter("ename"));
 pstmt.executeUpdate();
 %>
 삭제완료
+<%
+response.sendRedirect("select.jsp");
+%>
 
 </body>
 </html>
