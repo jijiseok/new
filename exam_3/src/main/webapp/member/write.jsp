@@ -6,27 +6,34 @@
 <%@ page import="java.sql.*" %>
 
 <%
-    // 글 번호 값 얻기, 주어지지 않았으면 0으로 설정
-    //int num = Integer.parseInt(request.getParameter("num"));
+
+	String memberId = (String) session.getAttribute("MEMBERID");
+	if (memberId == null) {
+		response.sendRedirect("sessionLoginForm.jsp");
+	} 
+	
+    //변수의 값에 따라서 새 글쓰기 모드인지, 글 수정 모드인지를 판단
     String tmp = request.getParameter("num");
     int num = (tmp != null && tmp.length() > 0) ? Integer.parseInt(tmp)
                                                 : 0;
-
+    
     // 새 글쓰기 모드를 가정하고 변수 초기값 설정
-    String writer  = "";
-    String title   = "";
-    String content = "";
-    String action  = "insert.jsp";
 
+    String title = "";
+    String content = "";
+    String action = "insert.jsp";
+    
     // 글 번호가 주어졌으면, 글 수정 모드
     if (num > 0) {
-    	BoardDao dao = BoardDao.getInstance();
-    	Board board = dao.selectOne(num, false);
+    	BoardDao dao = BoardDao.getInstance(); //데이터 연결
+    	Board board = dao.selectOne(num, false); 
     	
     	// 글 데이터를 변수에 저장
-        writer  = board.getWriter();
+		
         title   = board.getTitle();
         content = board.getContent();
+		
+     
 
 		// 글 수정 모드일 때는 저장 버튼을 누르면 UPDATE 실행
 		action  = "update.jsp?num=" + num;
@@ -48,23 +55,19 @@
 
 <form method="post" action="<%=action%>">
     <table>
+
         <tr>
             <th>제목</th>
-            <td><input type="text" name="title"  maxlength="80"
-                       value="<%=title%>">
-            </td>
+            <td><input type="text" name="title"  maxlength="80" value="<%=title%>"></td>
         </tr>
-        <tr>
-            <th>작성자</th>
-            <td><input type="text" name="writer" maxlength="20"
-                       value="<%=writer%>">
-            </td>
-        </tr>
+        
+        
         <tr>
             <th>내용</th>
-            <td><textarea name="content" rows="10"><%=content%></textarea>
-            </td>
-        </tr>
+            <td><textarea name="content" rows="10"><%=content%></textarea></td>
+       </tr>
+       
+
     </table>
 
     <br>
